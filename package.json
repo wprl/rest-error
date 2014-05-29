@@ -1,0 +1,44 @@
+{
+  "name": "baucis-error",
+  "author": {
+    "name": "William Riley-Land",
+    "email": "william@kun.io",
+    "url": "http://kun.io/wprl"
+  },
+  "homepage": "https://github.com/wprl/baucis-error",
+  "version": "1.0.0-candidate.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wprl/baucis-error.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wprl/baucis-error/issues/new",
+    "email": "william@kun.io"
+  },
+  "license": "MIT",
+  "description": "Baucis's error definitions and handler middleware.",
+  "keywords": [
+    "REST",
+    "RESTful",
+    "API",
+    "express",
+    "mongoose",
+    "schema",
+    "schemata",
+    "mongo",
+    "rfc2616",
+    "web",
+    "http"
+  ],
+  "peerDependencies": {
+    "mongoose": "~3.8.1",
+    "baucis": "~1.0.0-candidate.2"
+  },
+  "dependencies": {
+    "deco": "~0.11.1"
+  }
+}
