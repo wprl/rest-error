@@ -5,7 +5,7 @@ var BaucisError = require('./definitions');
 var plugin = module.exports = function (options, protect) {
   var controller = this;
 
-  protect.property('emptyCollection', 204);
+  protect.property('emptyCollection', 200);
   protect.property('handleErrors', true, function (handle) {
     return handle ? true : false;
   });
