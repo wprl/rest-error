@@ -4,25 +4,30 @@ var BaucisError = require('./definitions');
 
 var plugin = module.exports = function (options, protect) {
   var controller = this;
-
+  // A controller property used to set what error status code
+  // and response is sent when a query to a collection endpoint
+  // yields no documents.
   protect.property('emptyCollection', 200);
+  // A controller property that sets whether errors should be
+  // handled if possible, or just set status code.
   protect.property('handleErrors', true, function (handle) {
     return handle ? true : false;
   });
-
+  // Handle mongo validation and unprocessable entity errors.
   protect.use(function (error, request, response, next) {
     if (!error) return next();
     // Validation errors.
-    if (!(error instanceof mongoose.Error.ValidationError || error instanceof BaucisError.ValidationError)) {
+    if (!((error instanceof mongoose.Error.ValidationError) || (error instanceof BaucisError.UnprocessableEntity))) {
       next(error);
       return;
     }
     
     response.status(422);
-    if (controller.handleErrors()) return response.json(error.errors);
-    next(error);
+    if (!controller.handleErrors()) return next(error);
+    if (Array.isArray(error.errors)) return response.json(error.errors);
+    response.json(Object.keys(error.errors).map(function (key) { return error.errors[key] }));
   });
-  
+  // Handle mongo duplicate key error.
   protect.use(function (error, request, response, next) {
     if (!error) return next();
     if (error.message.indexOf('E11000 duplicate key error') === -1) {
@@ -48,7 +53,7 @@ var plugin = module.exports = function (options, protect) {
     if (controller.handleErrors()) return response.json(body);
     next(error);
   });
-
+  // Handle not found.
   protect.use('/:id?', function (error, request, response, next) {
     if (!error) return next();
     // Handle 404
@@ -63,7 +68,7 @@ var plugin = module.exports = function (options, protect) {
     if (controller.emptyCollection() === 204) return response.send();
     next(error);
   });
-
+  // Set response status code for all baucis errors.
   protect.use(function (error, request, response, next) {
     if (!error) return next();
     // Just set the status code for these errors.
@@ -71,7 +76,7 @@ var plugin = module.exports = function (options, protect) {
     response.status(error.status);
     next(error);
   });
-
+  // Handle mongoose version conflict error.
   protect.use(function (error, request, response, next) {
     if (!error) return next();
     if (!(error instanceof mongoose.Error.VersionError)) {

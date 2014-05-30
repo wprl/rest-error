@@ -6,7 +6,7 @@
     "url": "http://kun.io/wprl"
   },
   "homepage": "https://github.com/wprl/baucis-error",
-  "version": "1.0.0-candidate.4",
+  "version": "1.0.0-candidate.5",
   "main": "index.js",
   "scripts": {
     "test": "mocha --bail"
@@ -35,8 +35,7 @@
     "http"
   ],
   "peerDependencies": {
-    "mongoose": "~3.8.1",
-    "baucis": "~1.0.0-candidate.2"
+    "mongoose": "~3.8.1"
   },
   "dependencies": {
     "deco": "~0.12.0"

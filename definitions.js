@@ -78,11 +78,19 @@ BaucisError.UnsupportedMediaType = buildConstructor({
   name: 'Unsupported Media Type'
 });
 
-BaucisError.UnprocessableEntity = buildConstructor({
-  defaultMessage: 'A document failed validation',
-  status: 422,
-  name: 'Unprocessable Entity'
+BaucisError.UnprocessableEntity = deco(function (error) {
+  this.message = 'The request entity could not be processed (422).'
+  this.status = 422;
+  this.name = 'Unprocessable Entity';
+  this.errors = [];
+  this.errors.push(error);
 });
+
+BaucisError.UnprocessableEntity.container(BaucisError).inherit(BaucisError);
+BaucisError.UnprocessableEntity.prototype.add = function (key, error) {
+  this.errors.push(error);
+  return this;
+};
 
 BaucisError.Misconfigured = buildConstructor({
   defaultMessage: 'Baucis is misconfigured',
