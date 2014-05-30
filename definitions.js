@@ -36,7 +36,7 @@ BaucisError.Deprecated = buildConstructor({
   name: 'Bad Request'
 });
 
-BaucisError.SyntaxError = buildConstructor({
+BaucisError.BadSyntax = buildConstructor({
   defaultMessage: 'The body of this request was invalid and could not be parsed',
   status: 400,
   name: 'Bad Request'
@@ -78,13 +78,13 @@ BaucisError.UnsupportedMediaType = buildConstructor({
   name: 'Unsupported Media Type'
 });
 
-BaucisError.ValidationError = buildConstructor({
+BaucisError.UnprocessableEntity = buildConstructor({
   defaultMessage: 'A document failed validation',
   status: 422,
   name: 'Unprocessable Entity'
 });
 
-BaucisError.Configuration = buildConstructor({
+BaucisError.Misconfigured = buildConstructor({
   defaultMessage: 'Baucis is misconfigured',
   status: 500,
   name: 'Internal Server Error'
