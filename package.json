@@ -1,42 +1,35 @@
 {
-  "name": "baucis-error",
+  "name": "http-error",
   "author": {
     "name": "William Riley-Land",
     "email": "william@kun.io",
     "url": "http://kun.io/wprl"
   },
-  "homepage": "https://github.com/wprl/baucis-error",
-  "version": "1.0.0-candidate.5",
+  "homepage": "https://github.com/wprl/http-error",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --bail"
+    "test": "false"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wprl/baucis-error.git"
+    "url": "https://github.com/wprl/http-error.git"
   },
   "bugs": {
-    "url": "https://github.com/wprl/baucis-error/issues/new",
+    "url": "https://github.com/wprl/http-error/issues/new",
     "email": "william@kun.io"
   },
   "license": "MIT",
-  "description": "Baucis's error definitions and handler middleware.",
+  "description": "JavaScript errors that map to HTTP 4xx and 5xx error codes",
   "keywords": [
     "REST",
     "RESTful",
     "API",
-    "express",
-    "mongoose",
-    "schema",
-    "schemata",
-    "mongo",
     "rfc2616",
     "web",
-    "http"
+    "http",
+    "error"
   ],
-  "peerDependencies": {
-    "mongoose": "~3.8.1"
-  },
   "dependencies": {
     "deco": "~0.12.0"
   }

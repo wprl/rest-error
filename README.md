@@ -1,4 +1,4 @@
-baucis-error
+http-error
 ============
 
-Baucis's error definitions and handler middleware.
+JavaScript errors that map to HTTP 4xx and 5xx error codes.
