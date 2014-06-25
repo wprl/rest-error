@@ -1,11 +1,11 @@
 {
-  "name": "http-error",
+  "name": "rest-error",
   "author": {
     "name": "William Riley-Land",
     "email": "william@kun.io",
     "url": "http://kun.io/wprl"
   },
-  "homepage": "https://github.com/wprl/http-error",
+  "homepage": "https://github.com/wprl/rest-error",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wprl/http-error.git"
+    "url": "https://github.com/wprl/rest-error.git"
   },
   "bugs": {
-    "url": "https://github.com/wprl/http-error/issues/new",
+    "url": "https://github.com/wprl/rest-error/issues/new",
     "email": "william@kun.io"
   },
   "license": "MIT",
