@@ -1,9 +1,10 @@
-// __Dependencies__
+// ## Dependencies
 var deco = require('deco');
 var util = require('util');
-// __Module Definition__
+// ## Module Definition
 // Parent type for child HTTP errors.
-var RestError = module.exports = deco().inherit(Error);// __Private Module Members__
+var RestError = module.exports = deco().inherit(Error);
+// ## Private Module Members
 // Build a constructor function for an HTTP error, with a custom default message
 // that can be overridden.
 function buildConstructor (options) {
@@ -21,9 +22,11 @@ function buildConstructor (options) {
     else return options.defaultMessage;
   });
 
+  ChildError.status = options.status;
+
   return ChildError;
 };
-// __Public Module Members__
+// ## Public Module Members
 RestError.BadRequest = buildConstructor({
   defaultMessage: 'Please fix this request and try again',
   status: 400,
@@ -103,3 +106,19 @@ RestError.NotImplemented = buildConstructor({
   status: 501,
   name: 'Not Implemented'
 });
+
+RestError.status = function () {
+  var args = Array.prototype.slice.call(arguments);
+  var status = args.shift();
+  var errorNames = Object.keys(RestError).filter(function (name) {
+    return RestError[name].status === status;
+  });
+
+  if (errorNames.length === 0) {
+    throw RestError.Misconfigured('Unknown HTTP status code: %s', status);
+  }
+
+  var errorType = RestError[errorNames[0]];
+
+  return errorType.apply(errorType, args);
+};
