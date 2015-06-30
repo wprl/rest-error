@@ -46,7 +46,7 @@ RestError.BadSyntax = buildConstructor({
 });
 
 RestError.Forbidden = buildConstructor({
-  defaultMessage: 'This action is forbidden',
+  defaultMessage: 'The requested action is forbidden',
   status: 403,
   name: 'Forbidden'
 });
@@ -70,7 +70,7 @@ RestError.NotAcceptable = buildConstructor({
 });
 
 RestError.LockConflict = buildConstructor({
-  defaultMessage: 'This update conflicts with a previous update',
+  defaultMessage: 'The requested update would conflict with a previous update',
   status: 409,
   name: 'Conflict'
 });
@@ -95,8 +95,14 @@ RestError.UnprocessableEntity.prototype.add = function (key, error) {
   return this;
 };
 
+RestError.InternalServerError = buildConstructor({
+  defaultMessage: 'An unforseen error occurred',
+  status: 500,
+  name: 'Internal Server Error'
+});
+
 RestError.Misconfigured = buildConstructor({
-  defaultMessage: 'The software is misconfigured',
+  defaultMessage: 'The server is misconfigured',
   status: 500,
   name: 'Internal Server Error'
 });
