@@ -45,6 +45,12 @@ RestError.BadSyntax = buildConstructor({
   name: 'Bad Request'
 });
 
+RestError.Unauthorized = buildConstructor({
+    defaultMessage: 'Authentication is required',
+    status: 401,
+    name: 'Unauthorized'
+});
+
 RestError.Forbidden = buildConstructor({
   defaultMessage: 'The requested action is forbidden',
   status: 403,
@@ -75,10 +81,46 @@ RestError.LockConflict = buildConstructor({
   name: 'Conflict'
 });
 
+RestError.Gone = buildConstructor({
+    defaultMessage: 'The resource is no longer available',
+    status: 410,
+    name: 'Gone'
+});
+
+RestError.LengthRequired = buildConstructor({
+    defaultMessage: 'This request did not specify the length of its content',
+    status: 411,
+    name: 'Length Required'
+});
+
+RestError.PreconditionFailed = buildConstructor({
+    defaultMessage: 'The server does not meet one of the preconditions that the requester put on the request',
+    status: 412,
+    name: 'Precondition Failed'
+});
+
+RestError.requestEntityTooLarge = buildConstructor({
+    defaultMessage: 'This request is larger than the server is willing or able to process',
+    status: 413,
+    name: 'Request Entity Too Large'
+});
+
+RestError.requestUriTooLong = buildConstructor({
+    defaultMessage: 'The URI provided was too long',
+    status: 414,
+    name: 'Request URI Too Long'
+});
+
 RestError.UnsupportedMediaType = buildConstructor({
   defaultMessage: "The request's content type is unsupported",
   status: 415,
   name: 'Unsupported Media Type'
+});
+
+RestError.Teapot = buildConstructor({
+  defaultMessage: "You attempt to brew coffee with a teapot ;)",
+  status: 418,
+  name: 'I\'m a teapot'
 });
 
 RestError.UnprocessableEntity = deco(function (error) {
@@ -94,6 +136,12 @@ RestError.UnprocessableEntity.prototype.add = function (key, error) {
   this.errors.push(error);
   return this;
 };
+
+RestError.TooManyRequests = buildConstructor({
+    defaultMessage: "The request are exceed the rate limit",
+    status: 429,
+    name: 'Too Many Requests'
+});
 
 RestError.InternalServerError = buildConstructor({
   defaultMessage: 'An unforseen error occurred',
