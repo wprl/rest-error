@@ -34,25 +34,25 @@ RestError.BadRequest = buildConstructor({
 });
 
 RestError.Deprecated = buildConstructor({
-  defaultMessage: 'One or more deprecated features were used in this request',
+  defaultMessage: 'This request uses a deprecated feature and cannot be processed',
   status: 400,
   name: 'Bad Request'
 });
 
 RestError.BadSyntax = buildConstructor({
-  defaultMessage: 'The body of this request was invalid and could not be parsed',
+  defaultMessage: 'The body of the request is invalid and could not be parsed',
   status: 400,
   name: 'Bad Request'
 });
 
 RestError.Unauthorized = buildConstructor({
-    defaultMessage: 'Authentication is required',
+    defaultMessage: 'The requested resource requires authentication',
     status: 401,
     name: 'Unauthorized'
 });
 
 RestError.Forbidden = buildConstructor({
-  defaultMessage: 'The requested action is forbidden',
+  defaultMessage: 'The requested resource is forbidden',
   status: 403,
   name: 'Forbidden'
 });
@@ -82,31 +82,31 @@ RestError.LockConflict = buildConstructor({
 });
 
 RestError.Gone = buildConstructor({
-    defaultMessage: 'The resource is no longer available',
+    defaultMessage: 'The requested resource is no longer available',
     status: 410,
     name: 'Gone'
 });
 
 RestError.LengthRequired = buildConstructor({
-    defaultMessage: 'This request did not specify the length of its content',
+    defaultMessage: 'The request did not specify the length of its content',
     status: 411,
     name: 'Length Required'
 });
 
 RestError.PreconditionFailed = buildConstructor({
-    defaultMessage: 'The server does not meet one of the preconditions that the requester put on the request',
+    defaultMessage: 'The request preconditions cannot be met by the server',
     status: 412,
     name: 'Precondition Failed'
 });
 
-RestError.requestEntityTooLarge = buildConstructor({
-    defaultMessage: 'This request is larger than the server is willing or able to process',
+RestError.RequestEntityTooLarge = buildConstructor({
+    defaultMessage: 'The request is larger than the server is willing or able to process',
     status: 413,
     name: 'Request Entity Too Large'
 });
 
-RestError.requestUriTooLong = buildConstructor({
-    defaultMessage: 'The URI provided was too long',
+RestError.RequestUriTooLong = buildConstructor({
+    defaultMessage: 'The request URI is too long',
     status: 414,
     name: 'Request URI Too Long'
 });
@@ -118,7 +118,7 @@ RestError.UnsupportedMediaType = buildConstructor({
 });
 
 RestError.Teapot = buildConstructor({
-  defaultMessage: "You attempt to brew coffee with a teapot ;)",
+  defaultMessage: 'You attempted to brew coffee with a teapot ;)',
   status: 418,
   name: 'I\'m a teapot'
 });
@@ -138,13 +138,13 @@ RestError.UnprocessableEntity.prototype.add = function (key, error) {
 };
 
 RestError.TooManyRequests = buildConstructor({
-    defaultMessage: "The request are exceed the rate limit",
+    defaultMessage: 'The request would have exceeded the rate limit, so it has not been processed',
     status: 429,
     name: 'Too Many Requests'
 });
 
 RestError.InternalServerError = buildConstructor({
-  defaultMessage: 'An unforseen error occurred',
+  defaultMessage: 'An unforeseen error occurred',
   status: 500,
   name: 'Internal Server Error'
 });
